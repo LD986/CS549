@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -317,6 +319,14 @@ public class Client {
 						/*
 						 * TODO: Complete this thread.
 						 */
+						InputStream in = socket.getInputStream();
+						byte[] buf = new byte[8192];
+						int nbytes;
+						while((nbytes = in.read(buf)) != -1){
+							out.write(buf, 0, nbytes);
+						}
+						out.flush();
+						out.close();
 					} finally {
 						socket.close();
 					}
@@ -351,7 +361,15 @@ public class Client {
 						/*
 						 * TODO: Complete this thread.
 						 */
-						
+						OutputStream out = socket.getOutputStream();
+						byte[] buf = new byte[8192];
+						int nbytes;
+						while ((nbytes = in.read(buf)) != -1) {
+							out.write(buf, 0, nbytes);
+						}
+						out.flush();
+						in.close();
+
 					} finally {
 						socket.close();
 					}
@@ -381,16 +399,11 @@ public class Client {
 							 * TODO: download the file through the socket connection
 							 */
 								InputStream in = socket.getInputStream();
-								byte[] buf = new byte[512];
-								int nbytes =  in.read(buf, 0, 512);
-								while (nbytes > 0) {
+								byte[] buf = new byte[8192];
+								int nbytes;
+								while ((nbytes = in.read(buf)) != -1) {
 									out.write(buf, 0, nbytes);
-									nbytes = in.read(buf, 0, 512);
 								}
-								in.close();
-
-
-
 							/*
 							 * End TODO
 							 */
@@ -427,13 +440,34 @@ public class Client {
 						/*
 						 * TODO
 						 */
+						svr.put(inputs[1]);
+
+						InputStream in = new BufferedInputStream(new FileInputStream(inputs[1]));
+						log.info("Client connecting to server at address " + serverAddress);
+						Socket socket = new Socket(serverAddress, serverSocket.getPort());
+						try {
+							OutputStream out = socket.getOutputStream();
+							byte[] buf = new byte[8192];
+							int nbytes;
+							while ((nbytes = in.read(buf)) != -1) {
+								out.write(buf, 0, nbytes);
+							}
+							out.flush();
+						}
+						finally {
+							in.close();
+							socket.close();
+						}
 
 					} else if (mode == Mode.ACTIVE) {
 						/*
 						 * TODO
 						 */
+						InputStream in = new BufferedInputStream(new FileInputStream(inputs[1]));
+						new Thread(new PutThread(dataChan, in)).start();
+						svr.put(inputs[1]);
 					} else {
-						msgln("GET: No mode set--use port or pasv command.");
+						msgln("PUT: No mode set--use port or pasv command.");
 					}
 				} catch (Exception e) {
 					err(e);

@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.Serial;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -134,7 +136,13 @@ public class Server extends UnicastRemoteObject implements IServer {
 					/*
 					 * TODO: Complete this thread (remember to flush output!).
 					 */
-
+					OutputStream out = socket.getOutputStream();
+					byte[] buf = new byte[8192];
+					int nbytes;
+					while ((nbytes = in.read(buf)) != -1){
+						out.write(buf, 0, nbytes);
+					}
+					out.flush();
 					
 					/*
 					 * End TODO
@@ -166,6 +174,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 					/*
 					 * TODO: Complete this thread.
 					 */
+					InputStream in = socket.getInputStream();
+					byte[] buf = new byte[8192];
+					int nbytes;
+					while ((nbytes = in.read(buf)) != -1) {
+						out.write(buf, 0, nbytes);
+					}
+					out.flush();
+					out.close();
 				} finally {
 					socket.close();
 				}
@@ -189,7 +205,14 @@ public class Server extends UnicastRemoteObject implements IServer {
 				/*
 				 * TODO: connect to client socket to transfer file.
 				 */
+				OutputStream out = socket.getOutputStream();
+				byte[] buf = new byte[8192];
+				int nbytes;
 
+				while ((nbytes = in.read(buf)) != -1){
+					out.write(buf, 0, nbytes);
+				}
+				out.flush();
 				/*
 				 * End TODO.
 				 */
@@ -210,10 +233,28 @@ public class Server extends UnicastRemoteObject implements IServer {
 			/*
 			 * TODO
 			 */
+			OutputStream out = new BufferedOutputStream(new FileOutputStream(path() + file));
+			log.info("Server connecting to client at address " + clientSocket.getHostName() + " and port " + clientSocket.getPort());
+			Socket socket = new Socket(clientSocket.getHostName(), clientSocket.getPort());
+			try {
+				InputStream in = socket.getInputStream();
+				byte[] buf = new byte[8192];
+				int nbytes;
+				while ((nbytes = in.read(buf)) != -1) {
+					out.write(buf, 0, nbytes);
+				}
+				out.flush();
+			}
+			finally {
+				out.close();
+				socket.close();
+			}
 		} else if (mode == Mode.PASSIVE) {
 			/*
 			 * TODO
 			 */
+			OutputStream out = new BufferedOutputStream(new FileOutputStream(path() + file));
+			new Thread(new PutThread(dataChan, out)).start();
 		}
 	}
 
