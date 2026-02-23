@@ -6,6 +6,7 @@
 package edu.stevens.cs549.ftpclient;
 
 import edu.stevens.cs549.ftpinterface.IServer;
+import edu.stevens.cs549.ftpinterface.IServerFactory;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.EOFException;
