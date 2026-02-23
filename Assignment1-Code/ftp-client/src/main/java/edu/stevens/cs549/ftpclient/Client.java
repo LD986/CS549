@@ -380,6 +380,15 @@ public class Client {
 							/*
 							 * TODO: download the file through the socket connection
 							 */
+								InputStream in = socket.getInputStream();
+								byte[] buf = new byte[512];
+								int nbytes =  in.read(buf, 0, 512);
+								while (nbytes > 0) {
+									out.write(buf, 0, nbytes);
+									nbytes = in.read(buf, 0, 512);
+								}
+								in.close();
+
 
 
 							/*
