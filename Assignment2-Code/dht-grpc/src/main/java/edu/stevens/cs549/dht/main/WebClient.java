@@ -71,6 +71,22 @@ public class WebClient {
 		return getStub(node).getPred(Empty.getDefaultInstance());
 	}
 
+	public NodeInfo getSucc(NodeInfo node) {
+		Log.weblog(TAG, "getSucc(" + node.getId() + ")");
+		return getStub(node).getSucc(Empty.getDefaultInstance());
+	}
+
+	public NodeInfo closestPrecedingFinger(NodeInfo node, int id) {
+		Log.weblog(TAG, "closestPrecedingFinger(node=" + node.getId() + ", id=" + id + ")");
+		Id req = Id.newBuilder().setId(id).build();
+		return getStub(node).closestPrecedingFinger(req);
+	}
+
+	public NodeInfo findSuccessor(NodeInfo node, int id) {
+		Log.weblog(TAG, "findSuccessor(node=" + node.getId() + ", id=" + id + ")");
+		Id req = Id.newBuilder().setId(id).build();
+		return getStub(node).findSuccessor(req);
+	}
 
 	/*
 	 * Notify node that we (think we) are its predecessor.

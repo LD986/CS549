@@ -44,6 +44,7 @@ public class NodeService extends DhtServiceImplBase {
 	
 	// TODO: add the missing operations
 
+
 	private void error(String mesg, Exception e) {
 		logger.log(Level.SEVERE, mesg, e);
 	}
@@ -55,5 +56,118 @@ public class NodeService extends DhtServiceImplBase {
 		responseObserver.onCompleted();
 	}
 
+	@Override
+	public void getPred(Empty empty, StreamObserver<OptNodeInfo> responseObserver) {
+		Log.weblog(TAG, "getPred()");
+		try {
+			responseObserver.onNext(getDht().getPred());
+			responseObserver.onCompleted();
+		}
+		catch (Exception e){
+			error("getPred() failed", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void getSucc(Empty empty, StreamObserver<NodeInfo> responseObserver) {
+		Log.weblog(TAG, "getSucc()");
+		try {
+			responseObserver.onNext(getDht().getSucc());
+			responseObserver.onCompleted();
+		}
+		catch (Exception e){
+			error("getSucc() failed", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void closestPrecedingFinger(Id request, StreamObserver<NodeInfo> responseObserver) {
+		Log.weblog(TAG, "closestPrecedingFinger(" + request.getId() + ")");
+		try {
+			responseObserver.onNext(getDht().closestPrecedingFinger(request.getId()));
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("closestPrecedingFinger() failed", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void findSuccessor(Id request, StreamObserver<NodeInfo> responseObserver) {
+		Log.weblog(TAG, "findSuccessor(" + request.getId() + ")");
+		try {
+			responseObserver.onNext(getDht().findSuccessor(request.getId()));
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("findSuccessor() error", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void getBindings(Key request, StreamObserver<Bindings> responseObserver) {
+		Log.weblog(TAG, "getBindings(" + request.getKey() + ")");
+		try {
+			String k = request.getKey();
+			String[] values = getDht().get(k); // may throw Invalid
+
+			Bindings.Builder b = Bindings.newBuilder().setKey(k);
+			if (values != null) {
+				b.addAllValue(java.util.Arrays.asList(values));
+			}
+
+			responseObserver.onNext(b.build());
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("getBindings() error", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void addBinding(Binding request, StreamObserver<Empty> responseObserver) {
+		Log.weblog(TAG, "addBinding(" + request.getKey() + "," + request.getValue() + ")");
+		try {
+			getDht().add(request.getKey(), request.getValue());
+			responseObserver.onNext(Empty.getDefaultInstance());
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("addBinding() error", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void deleteBinding(Binding request, StreamObserver<Empty> responseObserver) {
+		Log.weblog(TAG, "deleteBinding(" + request.getKey() + "," + request.getValue() + ")");
+		try {
+			getDht().delete(request.getKey(), request.getValue());
+			responseObserver.onNext(Empty.getDefaultInstance());
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("deleteBinding() error", e);
+			responseObserver.onError(e);
+		}
+	}
+
+	@Override
+	public void notify(NodeBindings request, StreamObserver<OptNodeBindings> responseObserver) {
+		Log.weblog(TAG, "notify(from pred cand id=" + request.getInfo().getId() + ")");
+		try {
+			responseObserver.onNext(getDht().notify(request));
+			responseObserver.onCompleted();
+		}
+		catch (Exception e) {
+			error("notify() error", e);
+			responseObserver.onError(e);
+		}
+	}
 
 }
