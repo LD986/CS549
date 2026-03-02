@@ -2,6 +2,7 @@ package edu.stevens.cs549.dht.activity;
 
 import edu.stevens.cs549.dht.main.Log;
 import edu.stevens.cs549.dht.main.WebClient;
+import edu.stevens.cs549.dht.rpc.Bindings;
 import edu.stevens.cs549.dht.rpc.NodeBindings;
 import edu.stevens.cs549.dht.rpc.NodeInfo;
 import edu.stevens.cs549.dht.rpc.OptNodeBindings;
@@ -455,7 +456,8 @@ public class Dht extends DhtBase implements IDhtService, IDhtNode, IDhtBackgroun
 			 * 
 			 * TODO: Do the Web service call.
 			 */
-			return null;
+			Bindings b = client.getBindings(n, k);
+			return b.getValueList().toArray(new String[0]);
 		}
 	}
 
@@ -482,7 +484,7 @@ public class Dht extends DhtBase implements IDhtService, IDhtNode, IDhtBackgroun
 			/*
 			 * TODO: Do the Web service call.
 			 */
-
+			client.addBinding(n, k, v);
 		}
 	}
 
@@ -535,7 +537,7 @@ public class Dht extends DhtBase implements IDhtService, IDhtNode, IDhtBackgroun
 			/*
 			 * TODO: Do the Web service call.
 			 */
-
+			client.deleteBinding(n, k, v);
 		}
 	}
 

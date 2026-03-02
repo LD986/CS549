@@ -93,6 +93,24 @@ public class WebClient {
 		return getStub(host, port).getNodeInfo(Empty.getDefaultInstance());
 	}
 
+	public Bindings getBindings(NodeInfo node, String key) {
+		Log.weblog(TAG, "getBindings(node=" + node.getId() + ", key=" + key + ")");
+		Key req = Key.newBuilder().setKey(key).build();
+		return getStub(node).getBindings(req);
+	}
+
+	public void addBinding(NodeInfo node, String key, String value) {
+		Log.weblog(TAG, "addBinding(node=" + node.getId() + ", key=" + key + ", value=" +value + ")");
+		Binding req = Binding.newBuilder().setKey(key).setValue(value).build();
+		getStub(node).addBinding(req);
+	}
+
+	public void deleteBinding(NodeInfo node, String key, String value) {
+		Log.weblog(TAG, "deleteBinding(node=" + node.getId() + ", key=" + key + ", value=" + value + ")");
+		Binding req = Binding.newBuilder().setKey(key).setValue(value).build();
+		getStub(node).deleteBinding(req);
+	}
+
 	/*
 	 * Notify node that we (think we) are its predecessor.
 	 */
