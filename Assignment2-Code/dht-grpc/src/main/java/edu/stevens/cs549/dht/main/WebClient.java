@@ -88,6 +88,11 @@ public class WebClient {
 		return getStub(node).findSuccessor(req);
 	}
 
+	public NodeInfo getNodeInfo(String host, int port) {
+		Log.weblog(TAG, "getNodeInfo(" + host + ":" + port + ")");
+		return getStub(host, port).getNodeInfo(Empty.getDefaultInstance());
+	}
+
 	/*
 	 * Notify node that we (think we) are its predecessor.
 	 */
@@ -103,7 +108,14 @@ public class WebClient {
 		 * avoid because to do so is infeasible), it notifies us by returning
 		 * null.
 		 */
-		return null;
+		Log.weblog(TAG, "notify(node=" + node.getId() + ", pred=" + predDb.getInfo().getId() + ")");
+		try {
+			return getStub(node).notify(predDb);
+		}
+		catch (Exception e) {
+			error("notify() error", e);
+			throw new DhtBase.Failed("notify() failed: " + e);
+		}
 	}
 
 

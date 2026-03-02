@@ -621,6 +621,15 @@ public class Dht extends DhtBase implements IDhtService, IDhtNode, IDhtBackgroun
 		 * from us.
 		 */
 
+		state.clear();
+
+
+		NodeInfo bootstrap = client.getNodeInfo(host, port);
+
+		succ = client.findSuccessor(bootstrap, info.getId());
+		setSucc(succ);
+
+		stabilize();
 
 	}
 
