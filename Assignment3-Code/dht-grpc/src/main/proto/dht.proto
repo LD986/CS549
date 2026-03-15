@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "edu.stevens.cs549.dht.rpc";
+// option java_outer_classname = "HelloWorldProto";
+// option objc_class_prefix = "HLW";
+
+import "google/protobuf/empty.proto";
+
+/*
+ * Message types
+ */
+message Id {
+  int32 id = 1;
+}
+
+message Key {
+  string key = 1;
+}
+
+message NodeInfo {
+  int32 id = 1;
+  string host = 2;
+  int32 port = 3;
+}
+
+message OptNodeInfo {
+  optional NodeInfo nodeInfo = 1;
+}
+
+message Binding {
+  string key = 1;
+  string value = 2;
+}
+
+message Bindings {
+  string key = 1;
+  repeated string value = 2;
+}
+
+/*
+ * Events
+ */
+message Subscription {
+  int32 id = 1;  // Identifies the subscriber on the notifier
+  string key = 2;
+}
+
+message Event {
+  oneof bindingEvent {
+    Binding newBinding = 1;
+    google.protobuf.Empty movedBinding = 2;
+  }
+}
+
+/*
+ * Used to transfer bindings as part of a node becoming another nodes's predecessor.
+ */
+message NodeBindings {
+  NodeInfo info = 1;
+  NodeInfo succ = 2;
+  repeated Bindings bindings = 3;
+}
+
+message OptNodeBindings {
+  optional NodeBindings nodeBindings = 1;
+}
+
+/*
+ * Service operations
+ */
+
+service DhtService {
+
+  rpc getNodeInfo (google.protobuf.Empty) returns (NodeInfo);
+
+  rpc getPred (google.protobuf.Empty) returns (OptNodeInfo);
+
+  rpc getSucc (google.protobuf.Empty) returns (NodeInfo);
+
+  rpc closestPrecedingFinger (Id) returns (NodeInfo);
+
+  /*
+   * The input data is for the target node to back up predecessor's bindings (if we are doing backup).
+   * The output data is the bindings being transferred from this node to its new predecessor.
+   */
+  rpc notify (NodeBindings) returns (OptNodeBindings);
+
+  rpc getBindings (Key) returns (Bindings);
+
+  rpc addBinding (Binding) returns (google.protobuf.Empty);
+
+  rpc deleteBinding (Binding) returns (google.protobuf.Empty);
+
+  rpc findSuccessor (Id) returns (NodeInfo);
+
+  rpc listenOn (Subscription) returns (stream Event);
+
+  rpc listenOff (Subscription) returns (google.protobuf.Empty);
+
+}

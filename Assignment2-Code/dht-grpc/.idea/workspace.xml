@@ -5,7 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cdfb544-7a49-4930-8382-135a41f9a032" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../../Hans_Iselborn.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/src/main/java/edu/stevens/cs549/ftpclient/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/src/main/java/edu/stevens/cs549/util/ClientRMISocketFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/src/main/resources/client.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-client/src/test/java/edu/stevens/cs549/ftpclient/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-interface/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-interface/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-interface/src/main/java/edu/stevens/cs549/ftpinterface/IServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-interface/src/main/java/edu/stevens/cs549/ftpinterface/IServerFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/src/main/java/edu/stevens/cs549/ftpserver/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/src/main/java/edu/stevens/cs549/ftpserver/ServerFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/src/main/java/edu/stevens/cs549/ftpserver/ServerMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/src/main/resources/server.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp-server/src/test/java/edu/stevens/cs549/ftpserver/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-Code/ftp/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/Assignment1-FTP-rubric.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/ftp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/ftpd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/root/bar/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/root/foo/test3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/root/test1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/test4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/ftp-test/test5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/security_groups.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Hans_Iselborn/testing.mp4" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +82,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/ld986/Spring 2026/CS549/Assignment2-Code/dht-grpc/pom.xml",
+    "last_opened_file_path": "/home/ld986/Spring 2026/CS549/Assignment3-Code/dht-grpc/pom.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
