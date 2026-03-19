@@ -227,13 +227,20 @@ public class State implements IState, IRouting {
 		/*
 		 * TODO: Set the ith finger.
 		 */
+		if (i < 0 || i >= NFINGERS) {
+			throw new IllegalArgumentException("Finger index out of range: " + i);
+		}
+		finger[i] = info;
 	}
 
 	public synchronized NodeInfo getFinger(int i) {
 		/*
 		 * TODO: Get the ith finger.
 		 */
-		return null;
+		if (i < 0 || i >= NFINGERS) {
+			throw new IllegalArgumentException("Finger index out of range: " + i);
+		}
+		return finger[i];
 	}
 
 	public synchronized NodeInfo closestPrecedingFinger(int id) {
@@ -242,7 +249,15 @@ public class State implements IState, IRouting {
 		 * node. Hint: See DHTBase.inInterval()
 		 */
 
-		return null;
+		int me = this.info.getId();
+
+		for(int i = NFINGERS - 1; i >= 0; i--) {
+			NodeInfo f = finger[i];
+			if (f != null && DhtBase.inInterval(f.getId(), me, id, false)) {
+				return f;
+			}
+		}
+		return successor;
 	}
 
 	public synchronized void routes() {

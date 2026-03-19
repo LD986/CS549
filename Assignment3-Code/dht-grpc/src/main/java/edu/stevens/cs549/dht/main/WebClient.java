@@ -19,6 +19,8 @@ import edu.stevens.cs549.dht.rpc.Subscription;
 import edu.stevens.cs549.dht.state.IChannels;
 import edu.stevens.cs549.dht.state.IState;
 import io.grpc.Channel;
+import io.grpc.StatusRuntimeException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,6 +74,11 @@ public class WebClient {
 	 * TODO: Fill in missing operations.
 	 */
 
+	public NodeInfo getNodeInfo(String host, int port) throws DhtBase.Failed {
+		Log.weblog(TAG, "getNodeInfo(" + host + ":" + port + ")");
+		return getStub(host, port).getNodeInfo(Empty.getDefaultInstance());
+	}
+
 	/*
 	 * Get the predecessor pointer at a node.
 	 */
@@ -80,13 +87,30 @@ public class WebClient {
 		return getStub(node).getPred(Empty.getDefaultInstance());
 	}
 
+	public NodeInfo getSucc(NodeInfo node) throws DhtBase.Failed {
+		Log.weblog(TAG, "getSucc("+node.getId()+")");
+		return getStub(node).getSucc(Empty.getDefaultInstance());
+	}
+
+	public NodeInfo closestPrecedingFinger(NodeInfo node, int id) throws DhtBase.Failed {
+		Log.weblog(TAG, "closestPrecedingFinger(node=" + node.getId() + ", id=" + id + ")");
+		Id req = Id.newBuilder().setId(id).build();
+		return getStub(node).closestPrecedingFinger(req);
+	}
+
+	public NodeInfo findSuccessor(NodeInfo node, int id) throws DhtBase.Failed {
+		Log.weblog(TAG, "findSuccessor(node=" + node.getId() + ", id=" + id + ")");
+		Id req = Id.newBuilder().setId(id).build();
+		return getStub(node).findSuccessor(req);
+	}
+
 	/*
 	 * Notify node that we (think we) are its predecessor.
 	 */
 	public OptNodeBindings notify(NodeInfo node, NodeBindings predDb) throws DhtBase.Failed {
 		Log.weblog(TAG, "notify("+node.getId()+")");
 		// TODO
-		throw new IllegalStateException("notify() not yet implemented");
+		return getStub(node).notify(predDb);
 		/*
 		 * The protocol here is more complex than for other operations. We
 		 * notify a new successor that we are its predecessor, and expect its
@@ -98,18 +122,39 @@ public class WebClient {
 		 */
 	}
 
+	public Bindings getBindings(NodeInfo node, String key) throws DhtBase.Failed {
+		Log.weblog(TAG, "getBindings(node=" + node.getId() + ", key=" + key + ")");
+		Key req = Key.newBuilder().setKey(key).build();
+		return getStub(node).getBindings(req);
+	}
+
+	public void addBinding(NodeInfo node, String key, String value) throws DhtBase.Failed {
+		Log.weblog(TAG, "addBinding(node=" + node.getId() + ", key=" + key + ", value=" + value +")");
+		Binding req = Binding.newBuilder().setKey(key).setValue(value).build();
+		getStub(node).addBinding(req);
+	}
+
+	public void deleteBinding(NodeInfo node, String key, String value) throws DhtBase.Failed {
+		Log.weblog(TAG, "deleteBinding(node=" + node.getId() + ", key=" + key + ", value=" + value + ")");
+		Binding req = Binding.newBuilder().setKey(key).setValue(value).build();
+		getStub(node).deleteBinding(req);
+	}
+
 	/*
 	 * Listening for new bindings.
 	 */
 	public void listenOn(NodeInfo node, Subscription subscription, IEventListener listener) throws DhtBase.Failed {
 		Log.weblog(TAG, "listenOn("+node.getId()+")");
 		// TODO listen for updates for the key specified in the subscription
-
+		DhtServiceStub stub = getListenerStub(node);
+		EventConsumer consumer = EventConsumer.create(subscription.getKey(), listener);
+		stub.listenOn(subscription, consumer);
 	}
 
 	public void listenOff(NodeInfo node, Subscription subscription) throws DhtBase.Failed {
 		Log.weblog(TAG, "listenOff("+node.getId()+")");
 		// TODO stop listening for updates on bindings to the key in the subscription
+		getStub(node).listenOff(subscription);
 	}
 	
 }
