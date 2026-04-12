@@ -12,5 +12,28 @@ public class InitReducer extends Reducer<Text, Text, Text, Text> {
 		 * TODO: Output key: node+rank, value: adjacency list
 		 */
 
+		final String rank = "1";
+
+		StringBuilder sb = new StringBuilder();
+		boolean first = true;
+
+		for (Text v: values) {
+			String s = v.toString().trim();
+			if (s.isEmpty()) {
+				continue;
+			}
+			if (!first) {
+				sb.append(",");
+			}
+			sb.append(s);
+			first = false;
+		}
+
+		Text outKey = new Text(key.toString() + ";" + rank);
+
+		Text outVal = new text(sb.toString());
+
+		context.write(outKey, outVal);
+
 	}
 }

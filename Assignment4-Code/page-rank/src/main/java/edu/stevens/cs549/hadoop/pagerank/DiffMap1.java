@@ -19,6 +19,25 @@ public class DiffMap1 extends Mapper<LongWritable, Text, Text, Text> {
 		 *  TODO: read node-rank pair and emit: key:node, value:rank
 		 */
 
+		if (sections.length != 2) {
+			return;
+		}
+
+		String nodeRank = sections[0].trim();
+		String[] nr = nodeRank.split(";");
+		if (nr.length != 2) {
+			throw new IOException("Incorrect data format for node;rank: " + nodeRank);
+		}
+
+		String node = nr[0].trim();
+		String rank = nr[1].trim();
+
+		if (node.isEmpty() || rank.isEmpty()) {
+			return;
+		}
+
+		context.write(new Text(node), new Text(rank));
+
 	}
 
 }

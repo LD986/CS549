@@ -13,5 +13,22 @@ public class DiffRed1 extends Reducer<Text, Text, Text, Text> {
 		 * TODO: The list of values should contain two ranks.  Compute and output their difference.
 		 */
 
+		int i = 0;
+		for(Text v : values) {
+			if (i >= 2) {
+				break;
+			}
+			String s = v.toString().trim();
+			if (s.isEmpty()) {
+				continue;
+			}
+			ranks[i] = Double.parseDouble(s);
+			i++;
+		}
+
+		if (i == 2) {
+			double diff = Math.abs(ranks[0] - ranks[1]);
+			context.write(new Text(Double.toString(diff)), new Text(""));
+		}
 	}
 }

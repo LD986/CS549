@@ -15,6 +15,19 @@ public class DiffMap2 extends Mapper<LongWritable, Text, Text, Text> {
 		 * TODO: emit: key:"Difference" value:difference calculated in DiffRed1
 		 */
 
+		s = s.trim();
+		if (s.isEmpty()) {
+			return;
+		}
+
+		String[] parts = s.split("\t");
+		String diff = parts[0].trim();
+		if (diff.isEmpty()) {
+			return;
+		}
+
+		context.write(new Text("Difference"), new Text(diff));
+
 	}
 
 }

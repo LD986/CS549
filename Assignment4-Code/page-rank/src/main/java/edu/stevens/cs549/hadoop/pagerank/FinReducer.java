@@ -15,5 +15,14 @@ public class FinReducer extends Reducer<DoubleWritable, Text, Text, Text> {
 		 * TODO: For each value, emit: key:value, value:-rank
 		 */
 
+		double rank = -key.get();
+
+		for (Text v: values) {
+			String name = v.toString();
+			if (name == null || name.trim().isEmpty()) {
+				continue;
+			}
+			context.write(new Text(name), new Text(Double.toString(rank)));
+		}
 	}
 }

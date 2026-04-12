@@ -18,6 +18,25 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
 		// Emit (vertex name, pagerank) or (vertex id, vertex name, pagerank)
 		// Ignore if the values do not include both vertex name and page rank
 
+		String name = null;
+		String rank = null;
 
+		int i = 0;
+		for (Text v : values) {
+			String s = v.toString();
+			if (i == 0) {
+				name = s;
+			} else if (i == 1) {
+				rank = s;
+				break;
+			}
+			i++;
+		}
+
+		if (name == null || rank == null) {
+			return;
+		}
+
+		context.write(new Text(name), new Text(rank));
 	}
 }
