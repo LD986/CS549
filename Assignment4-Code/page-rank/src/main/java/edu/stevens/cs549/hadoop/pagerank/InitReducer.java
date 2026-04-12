@@ -31,7 +31,7 @@ public class InitReducer extends Reducer<Text, Text, Text, Text> {
 
 		Text outKey = new Text(key.toString() + ";" + rank);
 
-		Text outVal = new text(sb.toString());
+		Text outVal = new Text(sb.toString());
 
 		context.write(outKey, outVal);
 

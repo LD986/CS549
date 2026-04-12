@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e64e89b-c98f-4cea-b8d9-8e6bbe4d3db9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffMap1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffMap1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffMap2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffMap2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffRed1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffRed1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffRed2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/DiffRed2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/FinMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/FinMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitReducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/IterMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/IterMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/IterReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/IterReducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinRankMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinRankMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinReducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/PageRankDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/PageRankDriver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

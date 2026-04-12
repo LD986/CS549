@@ -38,7 +38,7 @@ public class IterMapper extends Mapper<LongWritable, Text, Text, Text> {
 		String node = nr[0].trim();
 		double rank = Double.parseDouble(nr[1].trim());
 
-		context.write(new Text(node), new Text("|" + adjlist));
+		context.write(new Text(node), new Text("|" + adjList));
 
 		if (adjList.isEmpty()) {
 			return;
