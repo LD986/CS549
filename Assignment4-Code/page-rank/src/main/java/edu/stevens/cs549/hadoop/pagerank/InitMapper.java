@@ -38,7 +38,7 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 		if (rhs.isEmpty()) {
 			return;
 		}
-
+`
 		String[] tos = rhs.split("\\s+");
 		for (String to : tos) {
 			String t = to.trim();

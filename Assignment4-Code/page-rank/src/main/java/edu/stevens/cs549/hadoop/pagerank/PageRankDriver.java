@@ -316,7 +316,11 @@ public class PageRankDriver {
 			deleteDirectory(interim2); // deletes other directory
 			counter++;
 
-			finish(interim1, output, reducers);
+			String joinTmp = "joinTmp";
+			deleteDirectory(joinTmp);
+			join(interim1, namesfile, joinTmp, reducers);
+
+			finish(joinTmp, output, reducers);
 			summarizeResult(output);
 		} else // for even i, interim1 is the input directory
 		{
@@ -325,7 +329,11 @@ public class PageRankDriver {
 			deleteDirectory(interim1); // Deletes other directory
 			counter++;
 
-			finish(interim2, output, reducers);
+			String joinTmp = "joinTmp";
+			deleteDirectory(joinTmp);
+			join(interim2, namesfile, joinTmp, reducers);
+
+			finish(joinTmp, output, reducers);
 			summarizeResult(output);
 		}
 		System.out.println();
