@@ -30,7 +30,8 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 			return;
 		}
 
-		if (parts.length == 1) {
+		if (parts.length == 1 || parts[1].trim().isEmpty()) {
+			context.write(new Text(from), new Text(""));
 			return;
 		}
 
@@ -38,7 +39,7 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 		if (rhs.isEmpty()) {
 			return;
 		}
-`
+
 		String[] tos = rhs.split("\\s+");
 		for (String to : tos) {
 			String t = to.trim();

@@ -21,16 +21,13 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
 		String name = null;
 		String rank = null;
 
-		int i = 0;
 		for (Text v : values) {
 			String s = v.toString();
-			if (i == 0) {
+			if (name == null) {
 				name = s;
-			} else if (i == 1) {
+			} else {
 				rank = s;
-				break;
 			}
-			i++;
 		}
 
 		if (name == null || rank == null) {

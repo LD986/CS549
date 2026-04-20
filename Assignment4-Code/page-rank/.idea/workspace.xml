@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4e64e89b-c98f-4cea-b8d9-8e6bbe4d3db9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/PageRankDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/PageRankDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/InitMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/stevens/cs549/hadoop/pagerank/JoinReducer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
