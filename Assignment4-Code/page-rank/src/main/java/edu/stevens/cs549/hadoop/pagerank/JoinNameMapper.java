@@ -12,9 +12,14 @@ public class JoinNameMapper extends Mapper<LongWritable, Text, TextPair, Text> {
 	protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		
 		String line = value.toString(); // Converts Line to a String
-		String[] sections = line.split(": "); // Splits it into two parts. Part 1: node | Part 2: name
+		String[] sections = line.split(": ", 2); // Splits it into two parts. Part 1: node | Part 2: name
 
-		context.write(new TextPair(sections[0], "0"), new Text(sections[1]));
+		if (sections.length < 2 || sections[0].trim().isEmpty() || sections[1].trim().isEmpty()) {
+			System.err.println("JoinNameMapper: skipping malformed line: " + line);
+			return;
+		}
+
+		context.write(new TextPair(sections[0].trim(), "0"), new Text(sections[1].trim()));
 
 	}
 }

@@ -322,30 +322,30 @@ public class PageRankDriver {
 		 * and modify the JoinRankMapper to ignore adjacency lists.  Then modify FinMapper and FinReducer
 		 * to expect the output of join, and sort by page rank.
 		 */
-		if (i % 2 == 1) // As i increments at the last step, for odd i, interim2
-		// is the input directory
+		/*
+		 * When i is odd the last iter ran on even (i-1), i.e. iter(interim1, interim2),
+		 * so the result is in interim2.  When i is even the last iter ran on odd (i-1),
+		 * i.e. iter(interim2, interim1), so the result is in interim1.
+		 */
+		if (i % 2 == 1) // odd i: last iter wrote to interim2
 		{
-			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
-
-			deleteDirectory(interim2); // deletes other directory
-			counter++;
-
-			String joinTmp = "joinTmp";
-			deleteDirectory(joinTmp);
-			join(interim1, namesfile, joinTmp, reducers);
-
-			finish(joinTmp, output, reducers);
-			summarizeResult(output);
-		} else // for even i, interim1 is the input directory
-		{
-			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
-
-			deleteDirectory(interim1); // Deletes other directory
+			deleteDirectory(interim1); // cleanup in case a prior run left interim1 behind
 			counter++;
 
 			String joinTmp = "joinTmp";
 			deleteDirectory(joinTmp);
 			join(interim2, namesfile, joinTmp, reducers);
+
+			finish(joinTmp, output, reducers);
+			summarizeResult(output);
+		} else // even i: last iter wrote to interim1
+		{
+			deleteDirectory(interim2); // cleanup in case a prior run left interim2 behind
+			counter++;
+
+			String joinTmp = "joinTmp";
+			deleteDirectory(joinTmp);
+			join(interim1, namesfile, joinTmp, reducers);
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);
