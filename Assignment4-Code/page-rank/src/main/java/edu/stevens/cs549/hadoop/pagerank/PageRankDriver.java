@@ -87,6 +87,8 @@ public class PageRankDriver {
 		}
 	}
 
+	private static final String JVM_OPTS = "-XX:-UseSplitVerifier";
+
 	static void init(String input, String output, int reducers)
 			throws IOException, ClassNotFoundException, InterruptedException {
 		System.out.println("Init Job Started");
@@ -96,6 +98,8 @@ public class PageRankDriver {
 			// ignore
 		}
 		Job job = Job.getInstance(); // Creates a new Job
+		job.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+		job.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
 		job.setNumReduceTasks(reducers); // Sets the number of reducers
 
@@ -129,6 +133,8 @@ public class PageRankDriver {
 			// ignore
 		}
 		Job job = Job.getInstance(); // Creates a new Job
+		job.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+		job.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
 		job.setNumReduceTasks(reducers); // Sets the number of reducers
 
@@ -158,6 +164,8 @@ public class PageRankDriver {
 		deleteDirectory("tempdiff");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new job
+		job.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+		job.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 		job.setJarByClass(PageRankDriver.class); // Sets Driver Class
 		job.setNumReduceTasks(reducers); // Sets number of reducers
 
@@ -178,6 +186,8 @@ public class PageRankDriver {
 		{
 			System.out.println("Diff Part 1 Complete, Part 2 Started");
 			Job job1 = Job.getInstance(); // Creates a new second job
+			job1.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+			job1.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 			job1.setJarByClass(PageRankDriver.class); // Sets driver class and number of reducers
 			job1.setNumReduceTasks(reducers);
 
@@ -220,6 +230,8 @@ public class PageRankDriver {
 		System.out.println("Join Job Started");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new Job
+		job.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+		job.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
 		job.setNumReduceTasks(reducers); // Sets the number of reducers
 
@@ -244,6 +256,8 @@ public class PageRankDriver {
 		System.out.println("Finish Job Started");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new Job
+		job.getConfiguration().set("mapreduce.map.java.opts", JVM_OPTS);
+		job.getConfiguration().set("mapreduce.reduce.java.opts", JVM_OPTS);
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
 		job.setNumReduceTasks(reducers); // Sets the number of reducers
 
