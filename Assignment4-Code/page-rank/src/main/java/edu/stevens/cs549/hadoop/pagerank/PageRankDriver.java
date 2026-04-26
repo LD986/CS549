@@ -332,7 +332,7 @@ public class PageRankDriver {
 		{
 			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
 
-			deleteDirectory(interim2); // deletes other directory
+			deleteDirectory(interim1); // deletes other directory
 			counter++;
 
 			String joinTmp = "joinTmp";
@@ -345,7 +345,7 @@ public class PageRankDriver {
 		{
 			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
 
-			deleteDirectory(interim1); // Deletes other directory
+			deleteDirectory(interim2); // Deletes other directory
 			counter++;
 
 			String joinTmp = "joinTmp";
