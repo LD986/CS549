@@ -90,6 +90,7 @@ public class PageRankDriver {
 	static void init(String input, String output, int reducers)
 			throws IOException, ClassNotFoundException, InterruptedException {
 		System.out.println("Init Job Started");
+		System.out.println("Hans Iselborn (hiselbor)");
 		try {
 			deleteDirectory(output);
 		} catch (Exception e) {
@@ -123,6 +124,7 @@ public class PageRankDriver {
 	static void iter(String input, String output, int reducers)
 			throws IOException, ClassNotFoundException, InterruptedException {
 		System.out.println("Iter Job Started");
+		System.out.println("Hans Iselborn (hiselbor)");
 		try {
 			deleteDirectory(output);
 		} catch (Exception e) {
@@ -155,6 +157,7 @@ public class PageRankDriver {
 	static void diff(String input1, String input2, String output, int reducers)
 			throws Exception {
 		System.out.println("Diff Job Part 1 Started");
+		System.out.println("Hans Iselborn (hiselbor)");
 		deleteDirectory("tempdiff");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new job
@@ -218,6 +221,7 @@ public class PageRankDriver {
 
 	static void join(String ranksInput, String namesInput, String output, int reducers) throws Exception {
 		System.out.println("Join Job Started");
+		System.out.println("Hans Iselborn (hiselbor)");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new Job
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
@@ -242,6 +246,7 @@ public class PageRankDriver {
 	static void finish(String input, String output, int reducers)
 			throws Exception {
 		System.out.println("Finish Job Started");
+		System.out.println("Hans Iselborn (hiselbor)");
 		deleteDirectory(output);
 		Job job = Job.getInstance(); // Creates a new Job
 		job.setJarByClass(PageRankDriver.class); // Sets the Driver class
