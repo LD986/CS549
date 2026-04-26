@@ -337,7 +337,7 @@ public class PageRankDriver {
 
 			String joinTmp = "joinTmp";
 			deleteDirectory(joinTmp);
-			join(interim1, namesfile, joinTmp, reducers);
+			join(interim2, namesfile, joinTmp, reducers);
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);
@@ -350,7 +350,7 @@ public class PageRankDriver {
 
 			String joinTmp = "joinTmp";
 			deleteDirectory(joinTmp);
-			join(interim2, namesfile, joinTmp, reducers);
+			join(interim1, namesfile, joinTmp, reducers);
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);
