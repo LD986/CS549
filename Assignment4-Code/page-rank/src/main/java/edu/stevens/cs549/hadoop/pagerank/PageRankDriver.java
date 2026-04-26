@@ -327,30 +327,29 @@ public class PageRankDriver {
 		 * so the result is in interim2.  When i is even the last iter ran on odd (i-1),
 		 * i.e. iter(interim2, interim1), so the result is in interim1.
 		 */
-		if (i % 2 == 1) // As i increments at the last step, for odd i, interim2
-		// is the input directory
+		if (i % 2 == 1) // odd i: result is in interim2
 		{
 			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
 
-			deleteDirectory(interim2); // deletes other directory
-			counter++;
-
-			String joinTmp = "joinTmp";
-			deleteDirectory(joinTmp);
-			join(interim1, namesfile, joinTmp, reducers);
-
-			finish(joinTmp, output, reducers);
-			summarizeResult(output);
-		} else // for even i, interim1 is the input directory
-		{
-			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
-
-			deleteDirectory(interim1); // Deletes other directory
+			deleteDirectory(interim1); // deletes other directory
 			counter++;
 
 			String joinTmp = "joinTmp";
 			deleteDirectory(joinTmp);
 			join(interim2, namesfile, joinTmp, reducers);
+
+			finish(joinTmp, output, reducers);
+			summarizeResult(output);
+		} else // even i: result is in interim1
+		{
+			// TODO: Modify this to output (vertex name, page rank) pairs instead of (vertex id, page rank)
+
+			deleteDirectory(interim2); // Deletes other directory
+			counter++;
+
+			String joinTmp = "joinTmp";
+			deleteDirectory(joinTmp);
+			join(interim1, namesfile, joinTmp, reducers);
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);
