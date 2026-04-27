@@ -31,6 +31,7 @@ public class JoinRankMapper extends Mapper<LongWritable, Text, TextPair, Text> {
          * Then emit (new TextPair(node, "1"), new Text(rank))
          */
 
+        // parse <nodeId>;<rank> composite key
         String nodeRank = sections[0].trim();
         String[] nr = nodeRank.split(";");
         if (nr.length != 2) {
@@ -43,7 +44,7 @@ public class JoinRankMapper extends Mapper<LongWritable, Text, TextPair, Text> {
         if (node.isEmpty() || rank.isEmpty()) {
             return;
         }
-
+        // emit in proper format
         context.write(new TextPair(node, "1"), new Text(rank));
 	}
 }

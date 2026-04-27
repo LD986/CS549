@@ -12,13 +12,15 @@ public class InitReducer extends Reducer<Text, Text, Text, Text> {
 		 * TODO: Output key: node+rank, value: adjacency list
 		 */
 
-		final String rank = "1";
+		final String rank = "1"; // start with PageRank of 1
 
+		// create comma-separated list of neighbor ids
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 
 		for (Text v: values) {
 			String s = v.toString().trim();
+			// skip dangling nodes
 			if (s.isEmpty()) {
 				continue;
 			}
@@ -29,6 +31,7 @@ public class InitReducer extends Reducer<Text, Text, Text, Text> {
 			first = false;
 		}
 
+		// key formatted as <nodeId>;<rank>
 		Text outKey = new Text(key.toString() + ";" + rank);
 
 		Text outVal = new Text(sb.toString());

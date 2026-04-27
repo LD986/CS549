@@ -336,8 +336,8 @@ public class PageRankDriver {
 			counter++;
 
 			String joinTmp = "joinTmp";
-			deleteDirectory(joinTmp);
-			join(interim2, namesfile, joinTmp, reducers);
+			deleteDirectory(joinTmp); // deletes previous temporary join directory
+			join(interim2, namesfile, joinTmp, reducers); // perform join
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);
@@ -349,8 +349,8 @@ public class PageRankDriver {
 			counter++;
 
 			String joinTmp = "joinTmp";
-			deleteDirectory(joinTmp);
-			join(interim1, namesfile, joinTmp, reducers);
+			deleteDirectory(joinTmp); // deletes previous temporary join directory
+			join(interim1, namesfile, joinTmp, reducers); // perform join
 
 			finish(joinTmp, output, reducers);
 			summarizeResult(output);

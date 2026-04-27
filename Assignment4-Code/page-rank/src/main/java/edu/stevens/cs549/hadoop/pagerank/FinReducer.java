@@ -15,8 +15,10 @@ public class FinReducer extends Reducer<DoubleWritable, Text, Text, Text> {
 		 * TODO: For each value, emit: key:value, value:-rank
 		 */
 
+		// negate rank to restore it
 		double rank = -key.get();
 
+		// emit records
 		for (Text v: values) {
 			String name = v.toString();
 			if (name == null || name.trim().isEmpty()) {

@@ -12,7 +12,7 @@ public class DiffRed2 extends Reducer<Text, Text, Text, Text> {
 		/* 
 		 * TODO: Compute and emit the maximum of the differences
 		 */
-
+		// find diff_max
 		for (Text v : values) {
 			String s = v.toString().trim();
 			if (s.isEmpty()) {
@@ -23,7 +23,7 @@ public class DiffRed2 extends Reducer<Text, Text, Text, Text> {
 				diff_max = diff;
 			}
 		}
-
+		// emit diff_max as key, null value
 		context.write(new Text(Double.toString(diff_max)), new Text(""));
 
 	}

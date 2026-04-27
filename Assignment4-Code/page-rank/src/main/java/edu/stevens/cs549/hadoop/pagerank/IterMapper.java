@@ -27,6 +27,7 @@ public class IterMapper extends Mapper<LongWritable, Text, Text, Text> {
 		 * Put a marker on the string value to indicate it is an adjacency list.
 		 */
 
+		// parse composite key "<nodeId>;<rank> and adjacency list
 		String nodeRank = sections[0].trim();
 		String adjList = sections[1].trim();
 
@@ -38,21 +39,26 @@ public class IterMapper extends Mapper<LongWritable, Text, Text, Text> {
 		String node = nr[0].trim();
 		double rank = Double.parseDouble(nr[1].trim());
 
+		// emit adjacency list tagged with |
 		context.write(new Text(node), new Text("|" + adjList));
 
+		// skip dangling nodes
 		if (adjList.isEmpty()) {
 			return;
 		}
 
+		// count out-degree
 		String[] adjs = adjList.split(",");
 		int outDegree = 0;
 		for (String a : adjs) {
 			if (!a.trim().isEmpty()) outDegree++;
 		}
+		// skip dangling node
 		if (outDegree == 0) {
 			return;
 		}
 
+		// compute equal rank contribution for each outgoing edge and emit
 		double contrib = rank / outDegree;
 
 		for (String a : adjs) {

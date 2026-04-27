@@ -20,12 +20,13 @@ public class DiffMap2 extends Mapper<LongWritable, Text, Text, Text> {
 			return;
 		}
 
+		// extract difference value
 		String[] parts = s.split("\t");
 		String diff = parts[0].trim();
 		if (diff.isEmpty()) {
 			return;
 		}
-
+		// emit ("Difference", difference)
 		context.write(new Text("Difference"), new Text(diff));
 
 	}

@@ -15,12 +15,12 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 		 * Alternatively, output adjacency pairs that will be collected by reducer.
 		 */
 
-		line = line.trim();
+		line = line.trim(); // ignore blank lines
 		if (line.isEmpty()) {
 			return;
 		}
 
-		String[] parts = line.split(":");
+		String[] parts = line.split(":"); // split on : to separate node id from neighbor list
 		if (parts.length < 1) {
 			return;
 		}
@@ -30,7 +30,7 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 			return;
 		}
 
-		if (parts.length == 1 || parts[1].trim().isEmpty()) {
+		if (parts.length == 1 || parts[1].trim().isEmpty()) { // dangling nodes
 			context.write(new Text(from), new Text(""));
 			return;
 		}
@@ -40,7 +40,7 @@ public class InitMapper extends Mapper<LongWritable, Text, Text, Text> {
 			return;
 		}
 
-		String[] tos = rhs.split("\\s+");
+		String[] tos = rhs.split("\\s+"); // parse neighbor list and emit
 		for (String to : tos) {
 			String t = to.trim();
 			if (!t.isEmpty()) {

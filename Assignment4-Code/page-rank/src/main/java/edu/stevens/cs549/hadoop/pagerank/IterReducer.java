@@ -17,10 +17,11 @@ public class IterReducer extends Reducer<Text, Text, Text, Text> {
 		double d = PageRankDriver.DECAY; // Decay factor
 		double rank = 0.0; // stores the decay factor in a variable rank
 
-		String adjacency = "";
+		String adjacency = ""; //holds adjacency list
 
-		double sum = 0.0;
+		double sum = 0.0; // accumulates rank contributions
 
+		// parse adjacency list from rank contributions
 		for (Text v : values) {
 			String s = v.toString().trim();
 			if (s.isEmpty()) continue;
@@ -31,7 +32,7 @@ public class IterReducer extends Reducer<Text, Text, Text, Text> {
 				sum += Double.parseDouble(s);
 			}
 		}
-
+		// compute rank and emit
 		rank = (1.0 - d) + d * sum;
 
 		context.write(new Text(key.toString() + ";" + Double.toString(rank)), new Text(adjacency));

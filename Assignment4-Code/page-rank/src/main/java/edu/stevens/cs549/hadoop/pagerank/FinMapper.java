@@ -20,11 +20,12 @@ public class FinMapper extends Mapper<LongWritable, Text, DoubleWritable, Text> 
 		 * Instead of reading the output of IterReducer, you are reading the output of JoinReducer.
 		 */
 
+		// get line and skip blank lines
 		line = line.trim();
 		if (line.isEmpty()) {
 			return;
 		}
-
+		// split on tab
 		String[] parts = line.split("\t");
 		if (parts.length < 2) {
 			return;
@@ -36,6 +37,7 @@ public class FinMapper extends Mapper<LongWritable, Text, DoubleWritable, Text> 
 			return;
 		}
 
+		// parse and negate rank for descending sort
 		double rank = Double.parseDouble(rankStr);
 
 		context.write(new DoubleWritable(-rank), new Text(name));

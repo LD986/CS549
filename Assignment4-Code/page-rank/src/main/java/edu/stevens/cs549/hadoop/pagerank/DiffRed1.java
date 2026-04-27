@@ -12,7 +12,7 @@ public class DiffRed1 extends Reducer<Text, Text, Text, Text> {
 		/* 
 		 * TODO: The list of values should contain two ranks.  Compute and output their difference.
 		 */
-
+		// extract ranks, ignoring improperly formatted lines
 		int i = 0;
 		for(Text v : values) {
 			if (i >= 2) {
@@ -26,6 +26,7 @@ public class DiffRed1 extends Reducer<Text, Text, Text, Text> {
 			i++;
 		}
 
+		// calculate absolute difference and emit as key, null value
 		if (i == 2) {
 			double diff = Math.abs(ranks[0] - ranks[1]);
 			context.write(new Text(Double.toString(diff)), new Text(""));

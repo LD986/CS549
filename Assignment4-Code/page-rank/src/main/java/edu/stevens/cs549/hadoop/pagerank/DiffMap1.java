@@ -23,6 +23,7 @@ public class DiffMap1 extends Mapper<LongWritable, Text, Text, Text> {
 			return;
 		}
 
+		// parse <nodeId>;<rank> composite key
 		String nodeRank = sections[0].trim();
 		String[] nr = nodeRank.split(";");
 		if (nr.length != 2) {
@@ -35,7 +36,7 @@ public class DiffMap1 extends Mapper<LongWritable, Text, Text, Text> {
 		if (node.isEmpty() || rank.isEmpty()) {
 			return;
 		}
-
+		// emit (nodeId, rank)
 		context.write(new Text(node), new Text(rank));
 
 	}
